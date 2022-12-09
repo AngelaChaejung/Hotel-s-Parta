@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Hotel's Parta_회원가입 페이지</title>
+<style>
+    * {
+        box-sizing: border-box
+    }
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    /* Set a style for all buttons */
+    button {
+        background-color: #f8af05;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100px;
+        opacity: 0.9;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button:hover {
+        opacity: 1;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        padding: 14px 20px;
+        background-color: #fec848;
+ 
+    }
+
+    /* Float cancel and signup buttons and add an equal width */
+    .cancelbtn,
+    .signupbtn {
+        float: left;
+        width: 100px;
+    }
+
+    /* Add padding to container elements */
+    .container {
+        padding: 50px;
+        margin: auto;
+        height: 90%;
+        width: fit-content;
+        border: 1.5px solid #ddd;
+    }
+        
+    .inner-container{
+        width: 450px;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+
+    .clearfix>button {
+        margin-right: 30px;
+        border-radius: 50px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <h1>회원가입</h1>
+                <p>환영합니다 이용하실 아이디와 패스워드를 입력해주세요!!</p>
+                <hr>
+
+                <label for="id"><b>ID</b></label>
+                <input type="text" placeholder="이용하실 아이디를 입력하세요.(알파벳 5글자 이상)" name="id" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="패스워드를 입력하세요." name="psw" required>
+
+                <label for="psw-repeat"><b>Repeat Password</b></label>
+                <input type="password" placeholder="패스워드를 다시 한번 입력해주세요." name="psw-repeat" required>
+
+
+                <div class="clearfix">
+                    <button type="button" class="cancelbtn">취소</button>
+                    <button type="submit" class="signupbtn">회원가입</button>
+                </div>
+        </div>
+    </div>
+ 
+
+</body>
+
+</html>
