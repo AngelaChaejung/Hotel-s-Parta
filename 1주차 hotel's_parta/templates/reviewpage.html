@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hotel's_parta review</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</head>
+
+<style>
+    /* 일단 주석처리 */
+    /* @font-face {
+        font-family: 'Noto Sans KR';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/notosanskr/v13/PbykFmXiEBPT4ITbgNA5Cgm203Tq4JJWq209pU0DPdWuqxJFA4GNDCBYtw.0.woff2) format('woff2');
+    } */
+
+    body {
+        font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-040.jpg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .image-preview {
+        width: 500px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background-color: transparent;
+        margin-top: 15px;
+    }
+
+    /* 글쓰기div가운데정렬 */
+    .writing-box {
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+   
+
+    .review-box {
+        width: 500px;
+        height: 500px;
+    }
+
+    .btns {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+
+    }
+
+    .btn1 {
+        margin-right: 15px;
+    }
+
+    .choseimg {
+        height: 30px;
+        width: 500px;
+        background-color: white;
+    }
+    .title {
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 350px;
+        width: 100%;
+        color:white;
+    }
+    h1 {
+        font-size: 5rem;
+    }
+
+</style>
+
+<script>
+    function posting() {
+        let url = $('#url').val();
+        let local = $('#local').val();
+        let user = $('#user').val();
+        let star = $('#star').val();
+        let image = $('#image').val();
+
+        console.log(url, local, user, star, image)
+
+        $.ajax({
+            type: 'POST',
+            url: '/reviewpage',
+            data: {
+                url_give: url,
+                image_give: image,
+                user_give: user,
+                local_give: local,
+                star_give: star
+            },
+
+            success: function (response) {
+                alert(response['msg']);
+                window.location.reload();
+            },
+        });
+    }
+
+</script> 
+
+<body>
+    <div class="title">
+        <h1>Hotel's Parta</h1>
+        <h4>Hotel Review 작성</h4>
+    </div>
+        <div class="writing-box">
+            <div class="review_post">
+                <div class="input-group flex-nowrap" style="margin-bottom: 10px">
+                    <span class="input-group-text">URL</span>
+                    <input type="text" class="form-control" id="url" placeholder="Url" aria-label="url을 붙여넣어주세요"
+                        aria-describedby="addon-wrapping" />
+                </div>
+                <div class="input-group flex-nowrap" style="margin: 0px 0px 10px 0px">
+                    <span class="input-group-text">닉네임</span>
+                    <input type="text" class="form-control" id="user" placeholder="text" aria-label="닉네임을 입력해주세요"
+                        aria-describedby="addon-wrapping" />
+                </div>
+                <div class="input-group mb-3">
+                    <select class="form-select" id="local">
+                        <option selected>지역을선택하세요</option>
+                        <option value="서울">서울</option>
+                        <option value="부산">부산</option>
+                        <option value="제주">제주</option>
+                        <option value="충청">충청</option>
+                        <option value="강원">강원</option>
+                    </select>
+                    <label class="input-group-text" id="local_select" for="inputGroupSelect02">지역선택</label>
+                </div>
+                <div class="input-group mb-3" style="margin: -5px 0px 0px 0px">
+                    <label class="input-group-text" id="evaluation" for="inputGroupSelect01">평가</label>
+                    <select class="form-select" id="star">
+                        <option selected>-- 선택하기 --</option>
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+                </div>
+            
+                <div class="choseimg">
+                    <input type="file" class="real-upload" id="image" accept="image/*" required multiple />
+                </div>
+
+                <div class="upload"></div>
+                <ul class="image-preview"></ul>
+                <script>
+                    function getImageFiles(e) {
+                        const uploadFiles = [];
+                        const files = e.currentTarget.files;
+                        const imagePreview = document.querySelector('.image-preview');
+                        const docFrag = new DocumentFragment();
+
+                        if ([...files].length >= 7) {
+                            alert('이미지는 최대 6개까지 업로드가 가능합니다.');
+                            return;
+                        }
+
+                        [...files].forEach((file) => {
+                            if (!file.type.match('image/.*')) {
+                                alert('이미지 파일만 업로드가 가능합니다.');
+                                return;
+                            }
+                            if ([...files].length < 7) {
+                                uploadFiles.push(file);
+                                const reader = new FileReader();
+                                reader.onload = (e) => {
+                                    const preview = createElement(e, file);
+                                    imagePreview.appendChild(preview);
+                                };
+                                reader.readAsDataURL(file);
+                            }
+                        });
+                    }
+
+                    function createElement(e, file) {
+                        const li = document.createElement('li');
+                        const img = document.createElement('img');
+                        img.setAttribute('src', e.target.result);
+                        img.setAttribute('data-file', file.name);
+                        li.appendChild(img);
+                        return li;
+                    }
+
+                    const realUpload = document.querySelector('.real-upload');
+                    const upload = document.querySelector('.upload');
+
+                    upload.addEventListener('click', () => realUpload.click());
+                    realUpload.addEventListener('change', getImageFiles);
+                </script>
+            </div>
+            <div class="review-box">
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Comments</label>
+                </div>
+                <div class="btns">
+                    <div class="btn1">
+                        <button type="button" onclick="posting()" class="btn btn-primary btn-sm">작성완료</button>
+                    </div>
+                    <div class="btn2">
+                        <button type="button" onclick="창종료" class="btn btn-secondary btn-sm">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</body>

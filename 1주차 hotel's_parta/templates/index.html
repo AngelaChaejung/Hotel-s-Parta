@@ -11,195 +11,212 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+</head>
 
-    <title>Hotel’s Parta</title>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic:wght@400;800&display=swap"
-        rel="stylesheet">
+<title>Hotel’s Parta</title>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic:wght@400;800&display=swap"
+    rel="stylesheet">
 <!-- 글꼴설정 -->
-    <style>
-        * {
-            font-family: 'Gowun Batang', serif;
-        }
-/* 메뉴버튼글씨 */
-        ul {
-            list-style-type: none;
 
-            padding-top: 7px;
-            float: right;
-            position: relative;
+<style>
+    * {
+        font-family: 'Gowun Batang', serif;
+    }
+
+    /* 메뉴버튼글씨 */
+    ul {
+        list-style-type: none;
+
+        padding-top: 7px;
+        float: right;
+        position: relative;
 
 
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
-/* 메뉴버튼 */
-        ul > button {
-            width: 150px;
-            height: 30px;
-            background-color: transparent;
-            border-radius: 50px;
-            border: 2px solid white;
-            color: white;
-            margin: auto;
-            margin-right: 20px;
-        }
-/* 메뉴버튼위치        ???? */
-        ul li {
-            display: inline;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 
-            border-left: 1px solid #c0c0c0;
-            padding: 0px 10px 0px 10px;
-            margin: 5px 0px 5px 0px;
-        }
+    /* 메뉴버튼 */
+    ul>button {
+        width: 150px;
+        height: 30px;
+        background-color: transparent;
+        border-radius: 50px;
+        border: 2px solid white;
+        color: white;
+        margin: auto;
+        margin-right: 20px;
+    }
 
-        ul li:first-child {
-            border-left: none;
-        }
-/* 전체배경이미지 */
-        .BG_image {
-            
-            width: auto;
-            height: auto;
-            
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://thumbs.dreamstime.com/z/beach-chair-around-swimming-pool-hotel-resort-sea-background-holiday-vacation-concept-191615831.jpg");
-            background-position: center;
-            background-size: cover;
-        }       
-/* 타이틀상단 */
-        .mytitle {
-            width: 100%;
-            height: 250px;
+    /* 메뉴버튼위치        ???? */
+    ul li {
+        display: inline;
 
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://cphoto.asiae.co.kr/listimglink/6/2021061010130073526_1623287579.jpg");
-            background-position: center 30%;
-            background-size: cover;
+        border-left: 1px solid #c0c0c0;
+        padding: 0px 10px 0px 10px;
+        margin: 5px 0px 5px 0px;
+    }
 
-            color: white;
+    ul li:first-child {
+        border-left: none;
+    }
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-/* 메뉴창1 */
-        .mymenu {
-            width: 100%;
-            height: 50px;
+    /* 전체배경이미지 */
+    .BG_image {
 
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+        width: auto;
+        height: auto;
 
-            background-color: black;
-        }
-/* 영화기록하기버튼1_수정요망 */
-        .mytitle > button {
-            width: 200px;
-            height: 50px;
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-040.jpg");
+        background-position: center;
+        background-size: cover;
+    }
 
-            background-color: transparent;
-            color: white;
+    /* 타이틀상단 */
+    .mytitle {
+        width: 100%;
+        height: 250px;
 
-            border-radius: 50px;
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://cphoto.asiae.co.kr/listimglink/6/2021061010130073526_1623287579.jpg");
+        background-position: center 30%;
+        background-size: cover;
 
-            border: 1px solid white;
+        color: white;
 
-            margin-top: 10px
-        }
-/* 영화기록하기버튼2_수정요망 */
-        .mytitle > button:hover {
-            border: 2px solid white;
-        }
-/* 리뷰카드창 전체div */
-        .reviews {
-            max-width: 1200px;
-            width: 100%;
-            margin: 20px auto 0px auto;
-        }
-/* 개개의 리뷰카드div */
-        .review {
-            background-color: white;
-        }
-/* 로그인버튼1 */
-        .login_out {
-            float: right;
-            background-color: black;
-        }
-/* 로그인버튼2 */
-        .login_out > button {
-            width: 100px;
-            height: 30px;
-            background-color: transparent;
-            border-radius: 50px;
-            border: 2px solid white;
-            color: white;
-            margin: auto;
-            margin-right: 20px;
-        }
-/* 메뉴창2 전체div */
-        .local {
-            width: 500px;
-            height: 50px;
-            margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
-/* 영화기록하기창div 수정요망 */
-        .mypost {
-            max-width: 500px;
-            width: 95%;
+    /* 메뉴창1 */
+    .mymenu {
+        width: 100%;
+        height: 50px;
 
-            margin: 20px auto 0px auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
 
-            box-shadow: 0px 0px 3px 0px gray;
-            padding: 20px;
+        background-color: black;
+    }
 
-            display: none;
-        }
-/* 영화 기록하기 닫기 버튼1 수정요망 */
-        .mybtns {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
+    /* 영화기록하기버튼1_수정요망 */
+    .mytitle>button {
+        width: 200px;
+        height: 50px;
 
-            margin-top: 20px;
-        }
-/* 영화 기록하기 닫기 버튼2 수정요망 */
-        .mybtns > button {
-            margin-right: 10px;
-        }
+        background-color: transparent;
+        color: white;
 
-    </style>
+        border-radius: 50px;
 
-    <script>
-        $(document).ready(function () {
-            listing();
-        });
-// 경로설정필요 , db에서 받아온정보를 포스팅박스에 붙여주는거
-        function listing() {
-            $.ajax({
-                type: 'GET',
-                url: '/movie',
-                data: {},
-                success: function (response) {
-                    let rows = response['movies']
-                    for (let i = 0; i < rows.length; i++) {
-                        let comment = rows[i]['comment']
-                        let title = rows[i]['title']
-                        let desc = rows[i]['desc']
-                        let image = rows[i]['image']
-                        let star = rows[i]['star']
+        border: 1px solid white;
 
-                        let star_image = '⭐'.repeat(star)
+        margin-top: 10px
+    }
 
-                        let temp_html = `<div class="col">
+    /* 영화기록하기버튼2_수정요망 */
+    .mytitle>button:hover {
+        border: 2px solid white;
+    }
+
+    /* 리뷰카드창 전체div */
+    .reviews {
+        max-width: 1200px;
+        width: 100%;
+        margin: 20px auto 0px auto;
+    }
+
+    /* 개개의 리뷰카드div */
+    .review {
+        background-color: white;
+    }
+
+    /* 로그인버튼1 */
+    .login_out {
+        float: right;
+        background-color: black;
+    }
+
+    /* 로그인버튼2 */
+    .login_out>button {
+        width: 100px;
+        height: 30px;
+        background-color: transparent;
+        border-radius: 50px;
+        border: 2px solid white;
+        color: white;
+        margin: auto;
+        margin-right: 20px;
+    }
+
+    /* 메뉴창2 전체div */
+    .local {
+        width: 500px;
+        height: 50px;
+        margin: auto;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 영화기록하기창div 수정요망 */
+    .mypost {
+        max-width: 500px;
+        width: 95%;
+
+        margin: 20px auto 0px auto;
+
+        box-shadow: 0px 0px 3px 0px gray;
+        padding: 20px;
+
+        display: none;
+    }
+
+    /* 영화 기록하기 닫기 버튼1 수정요망 */
+    .mybtns {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 20px;
+    }
+
+    /* 영화 기록하기 닫기 버튼2 수정요망 */
+    .mybtns>button {
+        margin-right: 10px;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        listing();
+    });
+    // 경로설정필요 , db에서 받아온정보를 포스팅박스에 붙여주는거
+    function listing() {
+        $.ajax({
+            type: 'GET',
+            url: '/movie',
+            data: {},
+            success: function (response) {
+                let rows = response['movies']
+                for (let i = 0; i < rows.length; i++) {
+                    let comment = rows[i]['comment']
+                    let title = rows[i]['title']
+                    let desc = rows[i]['desc']
+                    let image = rows[i]['image']
+                    let star = rows[i]['star']
+
+                    let star_image = '⭐'.repeat(star)
+
+                    let temp_html = `<div class="col">
                                         <div class="card h-100">
                                             <img src="${image}"
                                                  class="card-img-top">
@@ -211,42 +228,42 @@
                                             </div>
                                         </div>
                                     </div>`
-                        $('#cards-box').append(temp_html)
-                    }
-
-                    console.log(response['movies'])
+                    $('#cards-box').append(temp_html)
                 }
-            })
-        }
-// 영화기록하기 에서 값을 입력받아 DB에 저장
-        function posting() {
-            let url = $('#url').val()
-            let star = $('#star').val()
-            let comment = $('#comment').val()
 
-            $.ajax({
-                type: 'POST',
-                url: '/movie',
-                data: { url_give: url, star_give: star, comment_give: comment },
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            });
-        }
-// 영화기록하기창 열고 숨기기
-        function open_box() {
-            $('#post-box').show()
-        }
+                console.log(response['movies'])
+            }
+        })
+    }
+    // 영화기록하기 에서 값을 입력받아 DB에 저장
+    function posting() {
+        let url = $('#url').val()
+        let star = $('#star').val()
+        let comment = $('#comment').val()
 
-        function close_box() {
-            $('#post-box').hide()
-        }
-        
-    </script>
+        $.ajax({
+            type: 'POST',
+            url: '/movie',
+            data: { url_give: url, star_give: star, comment_give: comment },
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        });
+    }
+    // 영화기록하기창 열고 숨기기
+    function open_box() {
+        $('#post-box').show()
+    }
+
+    function close_box() {
+        $('#post-box').hide()
+    }
+
+</script>
 
 <body>
-
+    <!-- 타이틀상단과 메뉴 -->
     <div class="BG_image">
         <div class="mytitle">
             <h1>Hotel’s Parta</h1>
@@ -268,9 +285,9 @@
                 <button>로그인</button>
             </div>
         </div>
-<!-- 어디로가야하오 -->
+        <!-- 어디로가야하오 -->
         <button onclick="open_box()">영화 기록하기🔥</button>
-<!-- 경로설정 다시해야함 영화기록하기 내용 수정요망 -->
+        <!-- 경로설정 다시해야함 영화기록하기 내용 수정요망 -->
         <div class="reviews">
             <div class="mypost" id="post-box">
                 <div class="form-floating mb-3">
@@ -288,30 +305,30 @@
                         <option value="5">⭐⭐⭐⭐⭐</option>
                     </select>
                 </div>
-            <div class="form-floating">
-                <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
-                <label for="floatingTextarea2">코멘트</label>
+                <div class="form-floating">
+                    <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
+                    <label for="floatingTextarea2">코멘트</label>
+                </div>
+                <div class="mybtns">
+                    <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
+                    <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+                </div>
             </div>
-            <div class="mybtns">
-                <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-                <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-            </div>
-        </div>
-<!-- 바로 밑의 div 필요? 궁금 , 예시용 리뷰카드 , 지워도됌 -->
-        <div>
-            <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-                <div class="col">
-                    <div class="review">
-                        <img src="https://yousunghotel.com/file/image.do?path=temp_uploads/2021/12/&name=sC810fHHKDlOUkF.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">호텔이름</h5>
-                            <p class="card-text">리뷰</p>
-                            <p>⭐⭐⭐</p>
-                            <p class="mycomment">코멘트</p>
+            <!-- 바로 밑의 div 필요? 궁금 , 예시용 리뷰카드 , 지워도됌 -->
+            <div>
+                <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+                    <div class="col">
+                        <div class="review">
+                            <img src="https://yousunghotel.com/file/image.do?path=temp_uploads/2021/12/&name=sC810fHHKDlOUkF.jpg"
+                                class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">호텔이름</h5>
+                                <p class="card-text">리뷰</p>
+                                <p>⭐⭐⭐</p>
+                                <p class="mycomment">코멘트</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 </body>
