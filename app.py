@@ -1,7 +1,6 @@
 import hashlib
 import datetime
 import requests
-import jwt
 import certifi
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
@@ -10,12 +9,8 @@ app = Flask(__name__)
 
 ca = certifi.where()
 
-client = MongoClient(
-    "mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net/Cluter0?retryWrites=true&w=majority", tlsCAFile=ca)
+client = MongoClient("mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net/Cluter0?retryWrites=true&w=majority", tlsCAFile=ca)
 db = client.dbsparta_plus_week4
-
-SECRET_KEY = 'SPARTA'
-
 
 ##  HTML을 주는 부분  ##
 
@@ -137,13 +132,26 @@ def postbox_post():
         db.hotel.insert_one(doc)
 
         return jsonify({'msg': 'post success'})
-
+        
 
 ## postcard 보기 API ##
 @app.route('/postcard', methods=['GET'])
 def postcard_get():
     hotel_list = list(db.hotel.find())
     return jsonify({'hotel_list': hotel_list})
+    
+    
+    
+## 리뷰작성페이지
+@app.route('/reviewpage', methods=['POST'])
+def reviewpage_post():
+    url_receive = request.form('url_give')
+    image_receive = request.files('image_give')
+    local_receive = request.form['local_give']
+    star_receive = request.form['star_give']
+    user_receive = request.form['user_give']
+ 
+    return jsonify({'msg': '리뷰완료'})
 
 
 ## comment 삭제 API ##
