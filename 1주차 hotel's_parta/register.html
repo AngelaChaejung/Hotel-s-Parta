@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <title>Hotel's Parta_회원가입 페이지</title>
+    
+    
+    <script>
+        function register() {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/register",
+                    data: {
+                        id_give: $('#userid').val(),
+                        pw_give: $('#userpw').val(),
+                        nickname_give: $('#usernick').val()
+                    },
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            alert('회원가입이 완료되었습니다!')
+                            window.location.href = '/login'
+                        } else {
+                            alert(response['msg'])
+                        }
+                    }
+                })
+            }
+    </script>
+    
+    
+    
+    
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        /* Full-width input fields */
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #001e6f;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            opacity: 0.9;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button:hover {
+            opacity: 1;
+        }
+
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            padding: 14px 20px;
+            background-color: #292dff;
+    
+        }
+
+        /* Float cancel and signup buttons and add an equal width */
+        .cancelbtn,
+        .signupbtn {
+            float: left;
+            width: 100px;
+        }
+
+        /* Add padding to container elements */
+        .container {
+            padding: 50px;
+            margin: auto;
+            height: 90%;
+            width: fit-content;
+            border: 1.5px solid #ddd;
+        }
+            
+        .inner-container{
+            width: 450px;
+        }
+
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+
+        .clearfix>button {
+            margin-right: 30px;
+            border-radius: 50px;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="inner-container">
+                <h1>회원가입</h1>
+                    <p>환영합니다 이용하실 아이디와 패스워드를 입력해주세요!!</p>
+                    <hr>
+
+                    <label for="id"><b>ID</b></label>
+                    <input type="text" id="userid" placeholder="이용하실 아이디를 입력하세요.(알파벳 5글자 이상)" name="id" required>
+
+
+                    <label for="nickname"><b>Nick name</b></label>
+                    <input type="text" placeholder="이용하실 닉네임을 입력하세요." name="nickname" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" id="userpw" placeholder="패스워드를 입력하세요." name="psw" required>
+
+                    <label for="psw-confirm"><b>Password confirm</b></label>
+                    <input type="password" id="usernick" placeholder="패스워드를 다시 한번 입력해주세요." name="psw-repeat" required>
+
+
+                    <div class="clearfix">
+                        <button type="button" class="cancelbtn">취소</button>
+                        <button type="submit" class="signupbtn" onclick="register()">회원가입</button>
+                    </div>
+            </div>
+        </div>
+    
+
+    </body>
+
+    </html> 
