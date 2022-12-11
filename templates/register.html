@@ -30,15 +30,10 @@
             }
     </script>
     
-    
-    
-    
     <style>
         * {
             box-sizing: border-box
         }
-
-        /* Full-width input fields */
         input[type=text],
         input[type=password] {
             width: 100%;
@@ -49,8 +44,6 @@
             background: #f1f1f1;
         }
 
-
-
         input[type=text]:focus,
         input[type=password]:focus {
             background-color: #ddd;
@@ -58,7 +51,6 @@
         }
         *{
             color: white;
-
         }
         body {
             width: auto;
@@ -72,56 +64,53 @@
         }
        button {
             background-color: black;
-            color: white;
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 120px;
+            width: 130px;
+            height: 60px;
             opacity: 0.9;
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
-
             border-radius: 50px;
             border: 1px solid white;
             margin: 20px auto 0px auto;
+            font-weight: bold;
+            font-size: 15px;
         }
-
+/* 버튼 크기 키우기, 버튼 글씨 키우기 완료 */
 
         button:hover {
         border: 2px solid white;
 
         }
-
-        /* Extra styles for the cancel button */
-        .cancelbtn {
-            padding: 14px 20px;
-
+        .clearfix:{
+        margin-left: 70px;
         }
 
-        /* Float cancel and signup buttons and add an equal width */
         .cancelbtn,
         .signupbtn {
             float: left;
-            width: 100px;
         }
-        /* Add padding to container elements */
+
         .container {
-            padding: 50px;
-            margin: auto;
-            height: 90%;
-            width: fit-content;
-            border: white
-/*불투명색 넣기*/
+        padding: 50px;
+        margin: auto;
+        height: 60%;    
+        width: fit-content;  
+        border: 1.5px solid rgb(255, 255, 255); 
+        background-color: rgba(0, 0, 0, 0.206);
+/*불투명색 넣기 완료*/
          }
             
         .inner-container{
             width: 450px;
         }
 
-        /* Clear floats */
+
         .clearfix::after {
             content: "";
             clear: both;
@@ -155,8 +144,8 @@
 
 
                     <div class="clearfix">
-                        <button type="button" class="cancelbtn">취소</button>
                         <button type="submit" class="signupbtn" onclick="register()">회원가입</button>
+                        <button type="button" class="cancelbtn">취소</button>
                     </div>
             </div>
         </div>
