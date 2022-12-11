@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>호텔스 파르타 리뷰 페이지</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        /* header 영역 */
+        header {
+            height: 200px;
+            background-color: cornflowerblue;
+            display: flex;
+            flex-direction: column; /*수직 배치*/
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        /* navigation bar */
+        nav {
+            display: flex;
+            background-color: black;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        nav a:hover {
+            background-color: #dddddd;
+            color: black;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* 왼쪽 사이드 */
+        aside {
+            max-width: 50%;
+            flex-grow: 3;
+            background-color: dodgerblue;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        article {
+            max-width: 50%;
+            flex: 7;
+            background-color: cornflowerblue;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: gray;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        /* 반응형 웹 */
+        @media all and (max-width: 600px) {
+            #container, nav {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+
+    <script>
+        $(document).ready(function () {
+            listing();
+        });
+
+        function listing() {
+            $('#cards-box').empty()
+            $.ajax({
+                type: "GET",
+                url: "/list",
+                data: {},
+                success: function (response) {
+                    let movies = response['movies']
+                    for (let i = 0; i < movies.length; i++) {
+                        let movie = movies[i]
+                        let title = movie['title']
+                        let desc = movie['desc']
+                        let image = movie['image']
+                        let comment = movie['comment']
+                        let star = movie['star']
+
+                        let star_image = '⭐'.repeat(star)
+
+                        let temp_html = `<div class="col">
+                                        <div class="card h-100">
+                                        <img src="${image}"
+                                        class="card-img-top">
+                                        <div class="card-body">
+                                        <h5 class="card-title">${title}</h5>
+                                        <p class="card-text">${desc}</p>
+                                        <p>${star_image}</p>
+                                        <p class="mycomment">${comment}</p>
+                                        </div>
+                                        </div>
+                                        </div>`
+                        $('#cards-box').append(temp_html)
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+
+
+<!-- header 영역 -->
+<header>
+    <h1>Hotel'S parta Review Page</h1>
+    <p>모두가 남겨준 <strong style="color: black">소중한 리뷰</strong> 입니다</p>
+</header>
+
+<nav>
+    <a href="#">
+        <button type="button"
+                onclick="location.href='https://hotels.naver.com/item?hotelFileName=hotel%3AFairfield_by_Marriott_Seoul&adultCnt=2&checkIn=2022-12-18&checkOut=2022-12-19'">
+            링크걸기
+        </button>
+    </a>
+    <a href="#">
+        <button type="button"
+                onclick="window.open('https://hotels.naver.com/item?hotelFileName=hotel%3AFairfield_by_Marriott_Seoul&adultCnt=2&checkIn=2022-12-18&checkOut=2022-12-19') ">
+            새창열기
+        </button>
+    </a>
+    <a href="#">Link</a>
+    <a href="#">Link</a>
+</nav>
+
+<div id="container">
+    <!-- 왼쪽 사이드 -->
+    <aside>
+        <img src="${image}"
+             class="card-img-top">
+    </aside>
+    <!-- 본문 영역 -->
+    <article>
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                <p class="card-text">${desc}</p>
+                <p>${star_image}</p>
+                <p class="mycomment">${comment}</p>
+            </div>
+        </div>
+
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                <p class="card-text">${desc}</p>
+                <p>${star_image}</p>
+                <p class="mycomment">${comment}</p>
+            </div>
+        </div>
+
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                <p class="card-text">${desc}</p>
+                <p>${star_image}</p>
+                <p class="mycomment">${comment}</p>
+            </div>
+        </div>
+    </article>
+
+</div>
+
+<footer>
+    <h2>쓸때가 있을까 없으면 삭제</h2>
+</footer>
+
+</body>
+</html>
