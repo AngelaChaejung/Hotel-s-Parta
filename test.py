@@ -15,23 +15,73 @@ client = MongoClient("mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net
 db = client.hotels
 
 ######################### 키값 세션#####################################################
-
+@app.route('/')
+def home():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.user.find_one({"id": payload['id']})
+        return render_template('index.html', nickname=user_info["nick"])
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 ##########################키 값 세션 끝 #################################################   
    
 #######################로그인 세션  ####################################################
+@app.route('/index/login')
+def login():
+    msg = request.args.get("msg")
+    return render_template('login.html', msg=msg)
 
+
+
+@app.route('/index/login', methods=['POST'])
+def index_login():
+    id_receive = request.form['id_give']
+    pw_receive = request.form['pw_give']
+
+    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+    result = db.user.find_one({'id': id_receive, 'pw': pw_hash})
+
+    if result is not None:
+        payload = {
+            'id': id_receive,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+        }
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+
+        return jsonify({'result': 'success', 'token': token})
+    else:
+        return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 #############################로그인 세션 끝 #################################################
 
 ############################회원 가입 세션 ###################################################
+@app.route('/index/register', methods=['POST'])
+def index_register():
+    id_receive = request.form['id_give']
+    pw_receive = request.form['pw_give']
+    nickname_receive = request.form['nickname_give']
 
+    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+
+    db.user.insert_one(
+        {'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive})
+
+    return jsonify({'result': 'success'})
+
+@app.route('/register')
+def register():
+    return render_template('login.html')
 
 ####################회원 가입 세션 끝 #####################################################
 
 ######################index.html############################################################
-
+    
 @app.route('/index')
-def home():
+def index():
      return render_template('index.html')
+
 
 ##################### index.html #######################################################
 
