@@ -49,42 +49,56 @@
             background: #f1f1f1;
         }
 
+
+
         input[type=text]:focus,
         input[type=password]:focus {
             background-color: #ddd;
             outline: none;
         }
+        *{
+            color: white;
 
-        hr {
-            border: 1px solid #f1f1f1;
-            margin-bottom: 25px;
         }
+        body {
+            width: auto;
+            height: 1000px;
 
-        /* Set a style for all buttons */
-        button {
-            background-color: #001e6f;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://digital.ihg.com/is/image/ihg/ic-alliance-resorts-las-vegas-5437642392-2x1?fit=fit,1&wid=2880&hei=1440&qlt=85,0&resMode=sharp2&op_usm=1.75,0.9,2,0");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+       button {
+            background-color: black;
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 100px;
+            width: 120px;
             opacity: 0.9;
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
+
+            border-radius: 50px;
+            border: 1px solid white;
+            margin: 20px auto 0px auto;
         }
 
+
         button:hover {
-            opacity: 1;
+        border: 2px solid white;
+
         }
 
         /* Extra styles for the cancel button */
         .cancelbtn {
             padding: 14px 20px;
-            background-color: #292dff;
-    
+
         }
 
         /* Float cancel and signup buttons and add an equal width */
@@ -93,15 +107,15 @@
             float: left;
             width: 100px;
         }
-
         /* Add padding to container elements */
         .container {
             padding: 50px;
             margin: auto;
             height: 90%;
             width: fit-content;
-            border: 1.5px solid #ddd;
-        }
+            border: white
+/*불투명색 넣기*/
+         }
             
         .inner-container{
             width: 450px;
@@ -122,6 +136,7 @@
     </style>
     </head>
     <body>
+
         <div class="container">
             <div class="inner-container">
                 <h1>회원가입</h1>
@@ -129,17 +144,14 @@
                     <hr>
 
                     <label for="id"><b>ID</b></label>
-                    <input type="text" placeholder="이용하실 아이디를 입력하세요.(알파벳 5글자 이상)" name="id" required>
+                    <input type="text" id="userid" placeholder="이용하실 아이디를 입력하세요.(알파벳 5글자 이상)" name="id" required>
 
 
-                    <label for="nname"><b>Nick name</b></label>
-                    <input type="text" placeholder="이용하실 닉네임을 입력하세요." name="id" required>
+                    <label for="nickname"><b>Nick name</b></label>
+                    <input type="text" id="usernick" placeholder="이용하실 닉네임을 입력하세요." name="nickname" required>
 
                     <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="패스워드를 입력하세요." name="psw" required>
-
-                    <label for="psw-confirm"><b>Password confirm</b></label>
-                    <input type="password" placeholder="패스워드를 다시 한번 입력해주세요." name="psw-repeat" required>
+                    <input type="password" id="userpw" placeholder="패스워드를 입력하세요." name="psw" required>
 
 
                     <div class="clearfix">
@@ -148,8 +160,7 @@
                     </div>
             </div>
         </div>
-    
 
     </body>
 
-    </html>
+    </html> 
