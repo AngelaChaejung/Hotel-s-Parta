@@ -261,6 +261,7 @@
       let star = $("#star").val();
       let desc = $("#desc").val();
       console.log(hotelName, imageUrl, local, star, desc);
+
       $.ajax({
         type: "POST",
         url: "index/post",
@@ -284,6 +285,10 @@
 
     function close_box() {
       $("#post-box").hide();
+    }
+    function log_out(){
+      alert("로그아웃 됐습니다!")
+
     }
   </script>
 

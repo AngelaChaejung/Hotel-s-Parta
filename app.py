@@ -32,11 +32,6 @@ def home():
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
-@app.route('/logout')
-def log_out():
-    session.clear()
-    return redirect(url_for('/login'))
-
 
 ##########################키 값 세션 끝 #################################################
 
@@ -71,6 +66,11 @@ def index_login():
 
 ############################로그아웃 세션 #########################
 @app.route('/logout')
+def log_out():
+    session.clear()
+    return redirect(url_for('login'))
+
+
 ###############################################################
 ############################회원 가입 세션 ###################################################
 @app.route('/index/register', methods=['POST'])
