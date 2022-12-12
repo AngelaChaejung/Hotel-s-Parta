@@ -1,18 +1,21 @@
+import hashlib
+import datetime
+import requests
+import certifi
+import jwt
+
+SECRET_KEY = 'SPARTA'
+from bs4 import BeautifulSoup
+from pymongo import MongoClient
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 
 app = Flask(__name__)
 
-from pymongo import MongoClient
-import certifi
-import hashlib
-import datetime
-import jwt
-SECRET_KEY = 'TEAM3'
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.abnjiys.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
-db = client.dbsparta
 
-
+client = MongoClient("mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net/Cluter0?retryWrites=true&w=majority",
+                     tlsCAFile=ca)
+db = client.hotels
 ##  HTML을 주는 부분  ##
 
 @app.route('/')

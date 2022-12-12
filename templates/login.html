@@ -140,7 +140,7 @@
         function login() {
         $.ajax({
             type: "POST",
-            url: "/api/login",
+            url: "/index/login",
             data: {id_give: $('#userid').val(), pw_give: $('#userpw').val()},
             success: function (response) {
                 if (response['result'] == 'success') {
@@ -230,49 +230,6 @@
             </button>
             <button onclick="location.href='register.html'" type="button" class="registerbtn" > 회원가입
             </button>
-        </div>
-    </div>
-</div>
-<div class="register_box", id="register_box">
-    <div class="register_container">
-        <div class="inner-container">
-            <h1>회원가입</h1>
-            <p>환영합니다 이용하실 아이디와 패스워드를 입력해주세요!!</p>
-            <hr/>
-
-            <label for="id"><b>ID</b></label>
-            <input
-                    type="text"
-                    id="userid"
-                    placeholder="이용하실 아이디를 입력하세요.(알파벳 5글자 이상)"
-                    name="id"
-                    required
-            />
-
-            <label for="nickname"><b>Nick name</b></label>
-            <input
-                    type="text"
-                    id="usernick"
-                    placeholder="이용하실 닉네임을 입력하세요."
-                    name="nickname"
-                    required
-            />
-
-            <label for="psw"><b>Password</b></label>
-            <input
-                    type="password"
-                    id="userpw"
-                    placeholder="패스워드를 입력하세요."
-                    name="psw"
-                    required
-            />
-
-            <div class="clearfix">
-                <button type="submit" class="signupbtn" onclick="register()">
-                    회원가입
-                </button>
-                <button type="button" class="cancelbtn" onclick="login_open_box()">취소</button>
-            </div>
         </div>
     </div>
 </div>
