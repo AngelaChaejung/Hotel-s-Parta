@@ -15,7 +15,7 @@
         function register() {
                 $.ajax({
                     type: "POST",
-                    url: "/api/register",
+                    url: "/index/register",
                     data: {
                         id_give: $('#userid').val(),
                         pw_give: $('#userpw').val(),
@@ -24,7 +24,7 @@
                     success: function (response) {
                         if (response['result'] == 'success') {
                             alert('회원가입이 완료되었습니다!')
-                            window.location.href = '/login'
+                            window.location.href = '/index/login'
                         } else {
                             alert(response['msg'])
                         }
@@ -164,7 +164,7 @@
 
                     <div class="clearfix">
                         <button type="submit" class="signupbtn" onclick="register()">회원가입</button>
-                        <button onclick="location.href='login.html'"type="button" class="cancelbtn">취소</button>
+                        <button onclick="location.href='/index/login'"type="button" class="cancelbtn">취소</button>
                     </div>
             </div>
         </div>
