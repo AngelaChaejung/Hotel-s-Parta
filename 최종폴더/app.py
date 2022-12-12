@@ -2,10 +2,8 @@ import hashlib
 import datetime
 import requests
 import certifi
+from pprint import pprint
 import jwt
-from flask import session
-from flask_login import LoginManager, UserMixin
-from flask_login import login_user, logout_user, current_user, login_required
 SECRET_KEY = 'team3'
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
@@ -15,8 +13,7 @@ app = Flask(__name__)
 
 ca = certifi.where()
 
-client = MongoClient("mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net/Cluster0?retryWrites=true&w=majority",
-                     tlsCAFile=ca)
+client = MongoClient("mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net/Cluster0?retryWrites=true&w=majority", tlsCAFile=ca)
 db = client.hotels
 
 
@@ -26,6 +23,7 @@ def home():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        ## 토큰 존재시 > index  없으면 > login으로 ##
         user_info = db.user.find_one({"id": payload['id']})
         return render_template('index.html', nickname=user_info["nick"])
     except jwt.ExpiredSignatureError:
@@ -33,6 +31,14 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
+
+@app.route('/logout')
+def log_out():
+    session.clear()
+    ## 쿠키 삭제 후 통신 ##
+    ## a.jax에서 쿠키 삭제 ##
+    
+    return redirect(url_for('/index/login'))
 
 
 ##########################키 값 세션 끝 #################################################
@@ -67,25 +73,6 @@ def index_login():
 #############################로그인 세션 끝 #################################################
 
 ############################로그아웃 세션 #########################
-# @app.route('/logout')
-# def log_out():
-#     session.clear()
-#     return redirect(url_for('login'))
-# def logout_request(request):
-#     logout(request)
-#     messages.info(request, "Logged out successfully!")
-#     return redirect('login')
-
-
-#@app.route('/logout')
-# @login_required
-# def logout():
-#     logout_user()
-#     return redirect(url_for('Login'))
-@app.route('/logout',methods=['GET'])
-def logout():
-    session.pop('userid',None)
-    return redirect('/')
 ###############################################################
 ############################회원 가입 세션 ###################################################
 @app.route('/index/register', methods=['POST'])
@@ -113,7 +100,12 @@ def register():
 
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    #token_receive = request.cookies.get('mytoken')
+    #     ## 토큰 존재시 > index  없으면 > login으로 ##
+    #    if token_receive === null
+    #        return render_template ('/index/login')
+        ## 토큰 유무에 따라 접속 가능여부 확인 if elsr 검색 ## 
+        return render_template('index.html')
 
 
 ##################### index.html #######################################################
@@ -145,12 +137,38 @@ def postbox_get():
     hotelsList = list(db.post.find({}, {'_id': False}))
 
     return jsonify({'hotelsList': hotelsList})
+#####################################포스트 카테고리 #########################################
+#####################################서울 ###################################################
+@app.route('/seoul', methods=['GET'])
+def seoul_get():
+    seoul = list(db.post.find({'local':'서울'},{'_id': False}))  
+    return jsonify({'seoul': seoul})
 
+@app.route('/chungcheong', methods=['GET'])
+def chungcheong_get():
+    chungcheong = list(db.post.find({'local':'충청'},{'_id': False}))
+    return jsonify({'chungcheong': chungcheong})
+
+@app.route('/pusan', methods=['GET'])
+def pusan_get():
+    pusan = list(db.post.find({'local':'부산'},{'_id': False}))
+    return jsonify({'pusan': pusan})
+
+@app.route('/gangwon', methods=['GET'])
+def gangwon_get():
+    gangwon = list(db.post.find({'local':'강원'},{'_id': False}))
+    return jsonify({'gangwon': gangwon})
+
+@app.route('/jeju', methods=['GET'])
+def jeju_get():
+    jeju = list(db.post.find({'local':'제주'},{'_id': False}))
+    return jsonify({'jeju': jeju})
 
 ###################################리뷰포스트 페이지 ##########################################3
 @app.route('/reviewpost')
 def reviewpost():
     return render_template('reviewpost.html')
+    
 
 
 #############################################################################################

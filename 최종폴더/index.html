@@ -14,7 +14,6 @@
       crossorigin="anonymous"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -248,10 +247,193 @@
       });
     }
 
-    function logout() {
-        $.removeCookie('mytoken', {path: '/'});
-        window.location.href = '/';
+    // 경로설정필요 , db에서 받아온정보를 포스팅박스에 붙여주는거
+    function seoul_listing() {
+      $("#cards-box").empty();
+      $.ajax({
+        type: "GET",
+        url: "/seoul",
+        data: {},
+        success: function (response) {
+          let rows = response["seoul"];
+          for (let i = 0; i < rows.length; i++) {
+            let imageUrl = rows[i]["url"];
+            let hotelName = rows[i]["hotelName"];
+            let desc = rows[i]["desc"];
+            let star = rows[i]["star"];
+            let local = rows[i]["local"];
+
+            let star_image = "⭐".repeat(star);
+
+            let temp_html = `<div onclick="window.open('/reviewpost');">
+                                      <div class="col"></div>
+                                          <div class="col">
+                                          <div class="review">
+                                              <img src="${imageUrl}" class="card-img-top">
+                                                <div class="card-body">
+                                                  <h4 class="card-title">${hotelName}</h4>
+                                                  <p>${local}</p>
+                                                  <p>${star_image}</p>
+                                                  <p class="desc">${desc}</p>
+                                                </div>
+                                              </div>
+                                          </div>
+                                      </div>`;
+            $("#cards-box").append(temp_html);
+          }
+        },
+      });
     }
+
+    function chungcheong_listing() {
+      $("#cards-box").empty();
+      $.ajax({
+        type: "GET",
+        url: "/chungcheong",
+        data: {},
+        success: function (response) {
+          let rows = response["chungcheong"];
+          for (let i = 0; i < rows.length; i++) {
+            let imageUrl = rows[i]["url"];
+            let hotelName = rows[i]["hotelName"];
+            let desc = rows[i]["desc"];
+            let star = rows[i]["star"];
+            let local = rows[i]["local"];
+
+            let star_image = "⭐".repeat(star);
+
+            let temp_html = `<div onclick="window.open('/reviewpost');">
+                                      <div class="col"></div>
+                                          <div class="col">
+                                          <div class="review">
+                                              <img src="${imageUrl}" class="card-img-top">
+                                                <div class="card-body">
+                                                  <h4 class="card-title">${hotelName}</h4>
+                                                  <p>${local}</p>
+                                                  <p>${star_image}</p>
+                                                  <p class="desc">${desc}</p>
+                                                </div>
+                                              </div>
+                                          </div>
+                                      </div>`;
+            $("#cards-box").append(temp_html);
+          }
+        },
+      });
+    }
+
+    function pusan_listing() {
+      $("#cards-box").empty();
+      $.ajax({
+        type: "GET",
+        url: "/pusan",
+        data: {},
+        success: function (response) {
+          let rows = response["pusan"];
+          for (let i = 0; i < rows.length; i++) {
+            let imageUrl = rows[i]["url"];
+            let hotelName = rows[i]["hotelName"];
+            let desc = rows[i]["desc"];
+            let star = rows[i]["star"];
+            let local = rows[i]["local"];
+
+            let star_image = "⭐".repeat(star);
+
+            let temp_html = `<div onclick="window.open('/reviewpost');">
+                                      <div class="col"></div>
+                                          <div class="col">
+                                          <div class="review">
+                                              <img src="${imageUrl}" class="card-img-top">
+                                                <div class="card-body">
+                                                  <h4 class="card-title">${hotelName}</h4>
+                                                  <p>${local}</p>
+                                                  <p>${star_image}</p>
+                                                  <p class="desc">${desc}</p>
+                                                </div>
+                                              </div>
+                                          </div>
+                                      </div>`;
+            $("#cards-box").append(temp_html);
+          }
+        },
+      });
+    }
+    function gangwon_listing() {
+      $("#cards-box").empty();
+      $.ajax({
+        type: "GET",
+        url: "/gangwon",
+        data: {},
+        success: function (response) {
+          let rows = response["gangwon"];
+          for (let i = 0; i < rows.length; i++) {
+            let imageUrl = rows[i]["url"];
+            let hotelName = rows[i]["hotelName"];
+            let desc = rows[i]["desc"];
+            let star = rows[i]["star"];
+            let local = rows[i]["local"];
+
+            let star_image = "⭐".repeat(star);
+
+            let temp_html = `<div onclick="window.open('/reviewpost');">
+                                      <div class="col"></div>
+                                          <div class="col">
+                                          <div class="review">
+                                              <img src="${imageUrl}" class="card-img-top">
+                                                <div class="card-body">
+                                                  <h4 class="card-title">${hotelName}</h4>
+                                                  <p>${local}</p>
+                                                  <p>${star_image}</p>
+                                                  <p class="desc">${desc}</p>
+                                                </div>
+                                              </div>
+                                          </div>
+                                      </div>`;
+            $("#cards-box").append(temp_html);
+          }
+        },
+      });
+    }
+
+    function jeju_listing() {
+      $("#cards-box").empty();
+      $.ajax({
+        type: "GET",
+        url: "/jeju",
+        data: {},
+        success: function (response) {
+          let rows = response["jeju"];
+          for (let i = 0; i < rows.length; i++) {
+            let imageUrl = rows[i]["url"];
+            let hotelName = rows[i]["hotelName"];
+            let desc = rows[i]["desc"];
+            let star = rows[i]["star"];
+            let local = rows[i]["local"];
+
+            let star_image = "⭐".repeat(star);
+
+            let temp_html = `<div onclick="window.open('/reviewpost');">
+                                      <div class="col"></div>
+                                          <div class="col">
+                                          <div class="review">
+                                              <img src="${imageUrl}" class="card-img-top">
+                                                <div class="card-body">
+                                                  <h4 class="card-title">${hotelName}</h4>
+                                                  <p>${local}</p>
+                                                  <p>${star_image}</p>
+                                                  <p class="desc">${desc}</p>
+                                                </div>
+                                              </div>
+                                          </div>
+                                      </div>`;
+            $("#cards-box").append(temp_html);
+          }
+        },
+      });
+    }
+
+    function log_out() {
+      window.location.href = "localhost:5000";
     }
     // 영화기록하기 에서 값을 입력받아 DB에 저장
     function posting() {
@@ -260,8 +442,6 @@
       let local = $("#local").val();
       let star = $("#star").val();
       let desc = $("#desc").val();
-      console.log(hotelName, imageUrl, local, star, desc);
-
       $.ajax({
         type: "POST",
         url: "index/post",
@@ -286,7 +466,6 @@
     function close_box() {
       $("#post-box").hide();
     }
-
   </script>
 
   <body class="fullbody">
@@ -298,7 +477,7 @@
       </div>
       <div class="login_out_btn">
         <button onclick="open_box()">POST</button>
-        <button type="button" class="logoutbtn" onclick="location.href='/' ">LOG OUT</button>
+        <button onclick="log_out()" class="logoutbtn">LOG OUT</button>
       </div>
       <div class="mymenu">
         <div class="local">
@@ -308,14 +487,16 @@
                 src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f303.png"
                 width="32"
                 height="32"
-              />
-              서 울
+                onclick="seoul_listing()"
+              />서 울
             </button>
+
             <button>
               <img
                 src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f309.png"
                 width="32"
                 height="32"
+                onclick="pusan_listing()"
               />
               부 산
             </button>
@@ -324,6 +505,7 @@
                 src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f3dd.png"
                 width="32"
                 height="32"
+                onclick="jeju_listing()"
               />
               제 주
             </button>
@@ -332,6 +514,7 @@
                 src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f682.png"
                 width="32"
                 height="32"
+                onclick="chungcheong_listing()"
               />
               충 청
             </button>
@@ -340,6 +523,7 @@
                 src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f3c4_200d_2642.png"
                 width="32"
                 height="32"
+                onclick="gangwon_listing()"
               />
               강 원
             </button>
