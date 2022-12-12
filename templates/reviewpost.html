@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>호텔스 파르타 리뷰 페이지</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        /* header 영역 */
+        header {
+            height: 200px;
+            background-color: cornflowerblue;
+            display: flex;
+            flex-direction: column; /*수직 배치*/
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        /* navigation bar */
+        nav {
+            display: flex;
+            background-color: navajowhite;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        nav a {
+            color: black;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        nav a:hover {
+            background-color: #dddddd;
+            color: black;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* 왼쪽 사이드 */
+        aside {
+            max-width: 45%;
+            max-height: 100%;
+            flex-grow: 3;
+
+            padding: 20px;
+            overflow: auto;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        .comment {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        article {
+            max-width: 100%;
+            max-height: 650px;
+            flex: 7;
+
+            overflow: scroll;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: gray;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        /* 반응형 웹 */
+        @media all and (max-width: 600px) {
+            #container, nav {
+                flex-direction: column;
+            }
+        }
+
+        .block1 {
+            width: 500px;
+            height: 300px;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        .block2 {
+            width: 500px;
+            height: 300px;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        .block3 {
+            background-color: antiquewhite;
+            width: 540px;
+            height: auto;
+            padding: 5px;
+            text-align: left;
+            border-radius: 10px;
+            margin: 15px 10px 10px 15px;
+        }
+
+        .hotel-name {
+
+            text-align: center;
+            color: cornflowerblue;
+        }
+
+        .block4 {
+            width: 500px;
+            max-height: 520px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 5px 5px 5px 5px;
+        }
+
+        .card-body {
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-top: 5px;
+
+        }
+
+        .write-btn {
+            width: 50%;
+            background-color: dodgerblue;
+            border: none;
+            border-radius: 20px;
+
+            color: white;
+            padding: 15px 32px;
+            text-decoration: none;
+            font-size: 16px;
+
+            display: block;
+            margin: auto;
+
+        }
+
+
+    </style>
+
+
+    <script>
+        $(document).ready(function () {
+            listing();
+        });
+
+        function listing() {
+            $('#post-box').empty()
+            $.ajax({
+                type: "GET",
+                url: "/movies",
+                data: {},
+                success: function (response) {
+                    let movies = response['movies']
+                    for (let i = 0; i < movies.length; i++) {
+                        let movie = movies[i]
+
+                        let title = movie['title']
+                        let comment = movie['comment']
+                        let star = movie['star']
+                        let star_image = '⭐'.repeat(star)
+                        let temp_html = `<div class="col">
+                                        <h3 class="card-title">${title}</h3>
+                                        <p>${star_image}</p>
+                                        <p class="review-comment">${comment}</p></div>
+                                        </div>`
+                        $('#post-box').append(temp_html)
+                    }
+                }
+            })
+        }
+
+    </script>
+</head>
+<body>
+
+
+<!-- header 영역 -->
+<header>
+    <h1>Hotel'S parta Review Page</h1>
+    <p>방문해 주신 모두가 남겨준 <strong style="color: black">소중한 리뷰</strong> 입니다</p>
+</header>
+
+<nav>
+    <a href="#">
+        <button type="button"
+                onclick="location.href='https://hotels.naver.com/item?hotelFileName=hotel%3AFairfield_by_Marriott_Seoul&adultCnt=2&checkIn=2022-12-18&checkOut=2022-12-19'">
+            링크 바로 이동
+        </button>
+    </a>
+    <a href="#">
+        <button type="button"
+                onclick="window.open('https://hotels.naver.com/item?hotelFileName=hotel%3AFairfield_by_Marriott_Seoul&adultCnt=2&checkIn=2022-12-18&checkOut=2022-12-19') ">
+            링크 새창 열기
+        </button>
+    </a>
+    <a href="#">Link</a>
+    <a href="#">Link</a>
+</nav>
+
+<div id="container">
+    <!-- 왼쪽 사이드 -->
+
+    <aside>
+        <div class="block1">
+            <img src="https://www.p-city.com/mobilePub/static/images/hotelParadise/img_main_visual.jpg"
+                 style="width: 550px; height: 300px; border-radius: 10px;"
+                 class="card-img-top">
+        </div>
+
+        <div class="block2">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1619422.0435222401!2d124.81355549999999!3d37.55662630000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c98c2dec44d9d%3A0x642cdf5795c122fc!2z7YyM652864uk7J207Iqk7YWU!5e0!3m2!1sko!2skr!4v1670783059786!5m2!1sko!2skr"
+                    width="550" height="300" style="border-radius: 10px; border: 1px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="block3">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">호텔 Check in / Check out</li>
+                <li class="list-group-item">호텔 정보 etc...</li>
+            </ul>
+        </div>
+
+
+    </aside>
+    <!-- 본문 영역 -->
+
+    <div class="comment">
+        <div class="hotel-name">
+            <h2>Hotel title</h2>
+            <h2>서울 파라다이스 호텔</h2>
+        </div>
+        <article>
+            <div class="block4">
+
+                <div class="card h-100">
+                    <div class="card-body" id="post-box">
+                        <h3 class="card-title">${title}</h3>
+                        <p>${star_image}</p>
+                        <p class="review-comment">${comment}</p>
+                    </div>
+                </div>
+
+                <div class="card h-100">
+                    <div class="card-body" id="post-box">
+                        <h3 class="card-title">${title}</h3>
+                        <p>${star_image}</p>
+                        <p class="review-comment">${comment}</p>
+                    </div>
+                </div>
+
+                <div class="card h-100">
+                    <div class="card-body" id="post-box">
+                        <h3 class="card-title">${title}</h3>
+                        <p>${star_image}</p>
+                        <p class="review-comment">${comment}</p>
+                    </div>
+                </div>
+
+                <div class="card h-100">
+                    <div class="card-body" id="post-box">
+                        <h3 class="card-title">${title}</h3>
+                        <p>${star_image}</p>
+                        <p class="review-comment">${comment}</p>
+                    </div>
+                </div>
+
+                <div class="card h-100">
+                    <div class="card-body" id="post-box">
+                        <h3 class="card-title">${title}</h3>
+                        <p>${star_image}</p>
+                        <p class="review-comment">${comment}</p>
+                    </div>
+                </div>
+
+                <div class="card h-100">
+                    <div class="card-body" id="post-box">
+                        <h3 class="card-title">${title}</h3>
+                        <p>${star_image}</p>
+                        <p class="review-comment">${comment}</p>
+                    </div>
+                </div>
+
+                <div class="card h-100">
+                    <div class="card-body" id="post-box">
+                        <h3 class="card-title">${title}</h3>
+                        <p>${star_image}</p>
+                        <p class="review-comment">${comment}</p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </article>
+        <button type="button" class="write-btn">리뷰 쓰기</button>
+    </div>
+</div>
+
+<footer>
+    <h2>쓸때가 있을까? 없으면 삭제 해도 무방</h2>
+</footer>
+
+</body>
+</html>
