@@ -3,6 +3,9 @@ import datetime
 import requests
 import certifi
 import jwt
+from flask import session
+from flask_login import LoginManager, UserMixin
+from flask_login import login_user, logout_user, current_user, login_required
 SECRET_KEY = 'team3'
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
@@ -12,7 +15,8 @@ app = Flask(__name__)
 
 ca = certifi.where()
 
-client = MongoClient("mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net/Cluster0?retryWrites=true&w=majority", tlsCAFile=ca)
+client = MongoClient("mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net/Cluster0?retryWrites=true&w=majority",
+                     tlsCAFile=ca)
 db = client.hotels
 
 
@@ -29,11 +33,6 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
-
-@app.route('/logout')
-def log_out():
-    session.clear()
-    return redirect(url_for('/login'))
 
 
 ##########################키 값 세션 끝 #################################################
@@ -68,7 +67,25 @@ def index_login():
 #############################로그인 세션 끝 #################################################
 
 ############################로그아웃 세션 #########################
-@app.route('/logout')
+# @app.route('/logout')
+# def log_out():
+#     session.clear()
+#     return redirect(url_for('login'))
+# def logout_request(request):
+#     logout(request)
+#     messages.info(request, "Logged out successfully!")
+#     return redirect('login')
+
+
+#@app.route('/logout')
+# @login_required
+# def logout():
+#     logout_user()
+#     return redirect(url_for('Login'))
+@app.route('/logout',methods=['GET'])
+def logout():
+    session.pop('userid',None)
+    return redirect('/')
 ###############################################################
 ############################회원 가입 세션 ###################################################
 @app.route('/index/register', methods=['POST'])
@@ -129,11 +146,11 @@ def postbox_get():
 
     return jsonify({'hotelsList': hotelsList})
 
+
 ###################################리뷰포스트 페이지 ##########################################3
 @app.route('/reviewpost')
 def reviewpost():
     return render_template('reviewpost.html')
-    
 
 
 #############################################################################################
