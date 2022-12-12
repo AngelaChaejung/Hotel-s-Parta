@@ -3,7 +3,6 @@ import datetime
 import requests
 import certifi
 import jwt
-
 SECRET_KEY = 'team3'
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
@@ -13,8 +12,7 @@ app = Flask(__name__)
 
 ca = certifi.where()
 
-client = MongoClient("mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net/Cluter0?retryWrites=true&w=majority",
-                     tlsCAFile=ca)
+client = MongoClient("mongodb+srv://test:sparta@atlascluster.e9m9dht.mongodb.net/Cluster0?retryWrites=true&w=majority", tlsCAFile=ca)
 db = client.hotels
 
 
@@ -58,7 +56,7 @@ def index_login():
     if result is not None:
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
@@ -130,6 +128,15 @@ def postbox_get():
     hotelsList = list(db.post.find({}, {'_id': False}))
 
     return jsonify({'hotelsList': hotelsList})
+
+###################################리뷰포스트 페이지 ##########################################3
+@app.route('/reviewpost')
+def reviewpost():
+    return render_template('reviewpost.html')
+    
+
+
+#############################################################################################
 
 
 if __name__ == '__main__':
