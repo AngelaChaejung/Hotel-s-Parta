@@ -127,44 +127,40 @@
             dispay: none;
         }
     </style>
-    <script>
+        
+        <script>
         $(document).ready(function () {
-            listing();
+        listing();
         });
 
-        {%
-            if msg %}
+        {% if msg %}
         alert("{{ msg }}")
-        {%
-            endif %
-        }
+        {% endif %}
 
         function login() {
-            $.ajax({
-                type: "POST",
-                url: "/index/login",
-                data: {id_give: $('#userid').val(), pw_give: $('#userpw').val()},
-                success: function (response) {
-                    if (response['result'] == 'success') {
+        $.ajax({
+            type: "POST",
+            url: "/api/login",
+            data: {id_give: $('#userid').val(), pw_give: $('#userpw').val()},
+            success: function (response) {
+                if (response['result'] == 'success') {
+                    $.cookie('mytoken', response['token']);
 
-                        $.cookie('mytoken', response['token']);
-
-                        alert('안녕하세요! 로그인이 완료되었습니다!')
-                        window.location.href = '/index'
-                    } else {
-                        alert(response['msg'])
-                    }
+                    alert('안녕하세요! 로그인이 완료되었습니다!')
+                    window.location.href = '/'
+                } else {
+                    // 로그인이 안되면 에러메시지를 띄웁니다.
+                    alert(response['msg'])
                 }
-            })
+            }
+        })
         }
+        </script>
 
+        <script>
 
         function loginbox_close() {
             $("#login_box").hide();
-        }
-
-        function regibox_open() {
-            $("#regi_box").show();
         }
 
 
@@ -196,9 +192,7 @@
             $("#login_box").hide();
         }
 
-        function regi_open_box() {
-            $("#register_box").show();
-        }
+
     </script>
 
 
@@ -234,8 +228,7 @@
             <button onclick="login()" type="submit" class="loginbtn">
                 로그인
             </button>
-            <button onclick="login_close_box()" type="button" class="registerbtn">
-                회원가입
+            <button onclick="location.href='register.html'" type="button" class="registerbtn" > 회원가입
             </button>
         </div>
     </div>
