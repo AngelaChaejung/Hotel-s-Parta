@@ -65,14 +65,14 @@
 
         /* 왼쪽 사이드 */
         aside {
-            max-width: 45%;
+            max-width: 50%;
             max-height: 100%;
             flex-grow: 3;
 
             padding: 20px;
             overflow: auto;
             border-radius: 10px;
-            margin: 15px 10px 10px 15px;
+            margin: 1px 5px 5px 5px;
         }
 
         .comment {
@@ -86,7 +86,7 @@
             flex: 7;
             padding: 20px;
             border-radius: 10px;
-            margin: 15px 10px 10px 15px;
+            margin: 5px 5px 5px 5px;
         }
 
         footer {
@@ -140,12 +140,6 @@
 
         }
 
-        .open-button {
-            width: 100px;
-            height: 50px;
-            display: block;
-            margin: auto;
-        }
 
     </style>
 
@@ -177,7 +171,7 @@
                                                         <img src="${url}" style="width: 350px; height: 250px">
 
                                                         <div class="name-star" style="width: 300px; margin-left: 30px; margin-right: 30px;">
-                                                            <h3 class="card-title" style="max-width: 200px; font-size: 50px; background-color: ">${name}
+                                                            <h3 class="card-title" style="max-width: 200px; font-size: 30px; background-color: ">${name}
                                                             </h3>
 
                                                             <div class="image-star" style="max-width: 230px; font-size: 30px; background-color: ">
@@ -187,7 +181,7 @@
                                                             </div>
 
                                                             <div class="comment-review" style="width: auto; background-color: ">
-                                                            <p class="review-comment" style="overflow: auto; max-width: 700px; max-height: 300px; font-size: 25px; text-align: left;">${comment}</p>
+                                                            <p class="review-comment" style="overflow: auto; max-width: 700px; max-height: 250px; font-size: 20px; text-align: left;">${comment}</p>
                                                             </div>
 
                                                         </div>
@@ -208,7 +202,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/hotel',
-                data: {name_give: name, star_give: star, url_give: url,comment_give: comment},
+                data: {name_give: name, star_give: star, url_give: url, comment_give: comment},
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()
@@ -236,28 +230,38 @@
 
 <nav>
     <a href="#">
-        <button type="button"
-                onclick="location.href='https://hotels.naver.com/item?hotelFileName=hotel%3AFairfield_by_Marriott_Seoul&adultCnt=2&checkIn=2022-12-18&checkOut=2022-12-19'">
-            링크 바로 이동
+        <button type="button" style="border: none; background-color: navajowhite;"
+                onclick="location.href=''">
+            이 화면에서 ?으로 이동
         </button>
     </a>
     <a href="#">
-        <button type="button"
-                onclick="window.open('https://hotels.naver.com/item?hotelFileName=hotel%3AFairfield_by_Marriott_Seoul&adultCnt=2&checkIn=2022-12-18&checkOut=2022-12-19') ">
-            링크 새창 열기
+        <button type="button" style="border: none; background-color: navajowhite;"
+                onclick="window.open('') ">
+            새 창에서 ?으로 이동
         </button>
     </a>
-    <a href="#">Link</a>
-    <a href="#">Link</a>
+    <a href="#">
+        <button type="button" style="border: none; background-color: navajowhite;"
+                onclick="location.href=''">
+            홈으로
+        </button>
+    </a>
+    <a href="#">
+        <button type="button" style="border: none; background-color: navajowhite;"
+                onclick="window.open('') ">
+            로그인
+        </button>
+    </a>
 </nav>
 
 <div id="container">
     <!-- 왼쪽 사이드 -->
 
-    <aside>
+    <aside style="background-color: ; margin-top: ">
         <div class="block1">
             <img src="https://www.p-city.com/mobilePub/static/images/hotelParadise/img_main_visual.jpg"
-                 style="width: 550px; height: 300px; border-radius: 10px;"
+                 style="width: 550px; height: 300px; border-radius: 10px; margin-top: -20px"
                  class="card-img-top">
         </div>
 
@@ -269,8 +273,15 @@
 
         <div class="block3">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">호텔 Check in / Check out</li>
-                <li class="list-group-item">호텔 정보 etc...</li>
+                <li class="list-group-item"> Check in 14:00pm / Check out 12:00am</li>
+                <li class="list-group-item"> TEL. 02-777-7777</li>
+                <li class="list-group-item">
+                    <a href="#">
+                        <button type="button" style="border: none; background-color: white;"
+                                onclick="window.open('https://www.agoda.com/') ">예약 사이트로 이동
+                        </button>
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -278,18 +289,18 @@
     </aside>
     <!-- 본문 영역 -->
 
-    <div class="comment" style="width: 500px">
-        <div class="hotel-name">
-            <h2>Hotel title</h2>
-            <h2>서울 파라다이스 호텔</h2>
+    <div class="comment" style="width: 500px; background-color: ">
+        <div class="hotel-name" style="margin-top: 10px">
+            <h2>서울 파라다이스텔</h2>
         </div>
 
-        <div class="open-button" style="display: block; margin: auto;">
-            <button onclick="open_box()">리뷰 작성하기</button>
-        </div>
+        <button onclick="open_box()"
+                style="display: block; margin: auto; border-radius: 20px; width: 300px; height: 50px; background-color: white; margin-top: 10px; margin-bottom: 10px; font-size: 25px;">
+            👉리뷰 작성하기👈
+        </button>
 
         <article>
-            <div class="write-post" id="post-box">
+            <div class="write-post" id="post-box" style="background-color: ; margin-top: -30px; display: none;">
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">이름</span>
@@ -314,22 +325,23 @@
                     </select>
                 </div>
 
-                    <div class="form-floating mb-3">
-                        <input id="url" type="email" class="form-control" placeholder="name@example.com">
-                        <label>호텔 이미지 URL 복사/붙여넣기 </label>
-                    </div>
-
-                    <div class="form-floating">
-                        <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
-                        <label for="floatingTextarea2">코멘트</label>
-                    </div>
-
-                    <div class="open-close-btn" style="display: block; margin: auto">
-                        <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-                        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-                    </div>
-
+                <div class="form-floating mb-3">
+                    <input id="url" type="email" class="form-control" placeholder="name@example.com">
+                    <label>호텔 이미지 URL 복사/붙여넣기 </label>
                 </div>
+
+                <div class="form-floating">
+                    <textarea id="comment" class="form-control" placeholder="Leave a comment here"
+                              style="height: 420px"></textarea>
+                    <label for="floatingTextarea2">이곳에 리뷰를 남겨주세요</label>
+                </div>
+
+                <div class="open-close-btn" style="margin-top: 5px;">
+                    <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
+                    <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+                </div>
+
+            </div>
         </article>
     </div>
 </div>
