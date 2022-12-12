@@ -25,7 +25,7 @@
     href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic:wght@400;800&display=swap"
     rel="stylesheet"
   />
-  
+
   <!-- 글꼴설정 -->
 
   <style>
@@ -227,19 +227,20 @@
 
             let star_image = "⭐".repeat(star);
 
-            let temp_html = `<div onclick="window.open('${hotelName}');">
-                                        <div class="col">
-                                         <div class="review">
-                                            <img src="${imageUrl}" class="card-img-top">
-                                              <div class="card-body">
-                                                 <h4 class="card-title">${hotelName}</h4>
-                                                 <p>${local}</p>
-                                                 <p>${star_image}</p>
-                                                 <p class="desc">${desc}</p>
+            let temp_html = `<div onclick="window.open('/reviewpost');">
+                                      <div class="col"></div>
+                                          <div class="col">
+                                          <div class="review">
+                                              <img src="${imageUrl}" class="card-img-top">
+                                                <div class="card-body">
+                                                  <h4 class="card-title">${hotelName}</h4>
+                                                  <p>${local}</p>
+                                                  <p>${star_image}</p>
+                                                  <p class="desc">${desc}</p>
+                                                </div>
                                               </div>
-                                            </div>
-                                         </div>
-                                    </div>`;
+                                          </div>
+                                      </div>`;
             $("#cards-box").append(temp_html);
           }
         },
@@ -247,7 +248,7 @@
     }
 
     function log_out() {
-      window.location.href = "localhost:5000"
+      window.location.href = "localhost:5000";
     }
     // 영화기록하기 에서 값을 입력받아 DB에 저장
     function posting() {
@@ -297,11 +298,46 @@
       <div class="mymenu">
         <div class="local">
           <ul>
-            <button><img src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f303.png" width=32 height=32> 서 울</button>
-            <button><img src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f309.png" width=32 height=32> 부 산</button>
-            <button><img src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f3dd.png" width=32 height=32> 제 주</button>
-            <button><img src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f682.png" width=32 height=32> 충 청</button>
-            <button><img src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f3c4_200d_2642.png" width=32 height=32> 강 원</button>
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f303.png"
+                width="32"
+                height="32"
+              />
+              서 울
+            </button>
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f309.png"
+                width="32"
+                height="32"
+              />
+              부 산
+            </button>
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f3dd.png"
+                width="32"
+                height="32"
+              />
+              제 주
+            </button>
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f682.png"
+                width="32"
+                height="32"
+              />
+              충 청
+            </button>
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f3c4_200d_2642.png"
+                width="32"
+                height="32"
+              />
+              강 원
+            </button>
           </ul>
         </div>
       </div>
@@ -368,10 +404,8 @@
               포스트 닫기
             </button>
           </div>
-          
         </div>
-        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-          <div class="col"></div>
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box"></div>
       </div>
     </div>
   </body>
