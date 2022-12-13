@@ -1,360 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>호텔스 파르타 리뷰 페이지</title>
 
-    <style>
-          .fullbody {
-          background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url("http://cdn.cnn.com/cnnnext/dam/assets/171220095539-11-las-vegas-boutique-hotels.jpg")
-              no-repeat center center fixed;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
-        }
-          /* header 영역 */
-          header {
-            linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-            height: 200px;
-            background-color: transparent;
-            display: flex;
-            flex-direction: column; /*수직 배치*/
-            align-items: center;
-            justify-content: center;
-            color: white;
-            border-radius: 10px;
-            margin: 15px 10px 10px 15px;
-          }
+<head>
+  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-          /* navigation bar */
-          nav {
-            display: flex;
-            background-color: black;
-            border-radius: 10px;
-            margin: 15px 10px 10px 15px;
-          }
-
-          nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-          }
-
-          nav a:hover {
-            background-color: #dddddd;
-            color: black;
-          }
-
-          #container {
-            display: flex;
-            flex-wrap: wrap;
-          }
-
-          /* 왼쪽 사이드 */
-          aside {
-            max-width: 45%;
-            max-height: 100%;
-            flex-grow: 3;
-
-            padding: 20px;
-            overflow: auto;
-            border-radius: 10px;
-            margin: 15px 10px 10px 15px;
-          }
-
-          .comment {
-            max-width: 100%;
-            max-height: 100%;
-          }
-
-          article {
-            max-width: 100%;
-            max-height: 650px;
-            flex: 7;
-
-            overflow: scroll;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 15px 10px 10px 15px;
-          }
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 
 
-          footer {
-            padding: 20px;
-            text-align: center;
-            background: gray;
-            border-radius: 10px;
-            margin: 15px 10px 10px 15px;
-          }
+  <title>Hotel’s Parta</title>
+  <link
+  href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic:wght@400;800&display=swap"
+  rel="stylesheet"
+  />
 
-          /* 반응형 웹 */
-          @media all and (max-width: 600px) {
-            #container,
-            nav {
-              flex-direction: column;
-            }
-          }
-
-          .block1 {
-            width: 500px;
-            height: 300px;
-            border-radius: 10px;
-            margin: 15px 10px 10px 15px;
-          }
-
-          .block2 {
-            width: 500px;
-            height: 300px;
-            border-radius: 10px;
-            margin: 15px 10px 10px 15px;
-          }
-
-          .block3 {
-            background-color: antiquewhite;
-            width: 540px;
-            height: auto;
-            padding: 5px;
-            text-align: left;
-            border-radius: 10px;
-            margin: 15px 10px 10px 15px;
-          }
-          .review_area {
-              background-color: transparent;
-              color : white;
-              height : 50%;
-          }
-          .card-body {
-              background-color: grey;
-              height: 200px;
-              width:auto
-
-
-          }
-          .img-thumbnail {
-            display: block;
-            float:left;
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 5px;
-
-
-          }
-          .hotel-name {
-            linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) );
-            text-align: center;
-            color: white;
-          }
-
-          .block4 {
-            width: 500px;
-            max-height: 520px;
-            text-align: center;
-            border-radius: 10px;
-            margin: 5px 5px 5px 5px;
-          }
-
-          .card-body {
-            border: 1px solid black;
-            border-radius: 10px;
-            margin-top: 5px;
-          }
-
-          .write-btn {
-            width: 50%;
-            background-color: dodgerblue;
-            border: none;
-            border-radius: 20px;
-
-            color: white;
-            padding: 15px 32px;
-            text-decoration: none;
-            font-size: 16px;
-
-            display: block;
-            margin: auto;
-          }
-    </style>
-
-    <script>
-      $(document).ready(function () {
-        listing();
-      });
-
-      function listing() {
-        $("#post-box").empty();
-        $.ajax({
-          type: "GET",
-          url: "/index/post",
-          data: {},
-          success: function (response) {
-            let rows = response["hotelsList"];
-            for (let i = 0; i < rows.length; i++) {
-              let imageUrl = rows[i]["url"];
-              let hotelName = rows[i]["hotelName"];
-              let desc = rows[i]["desc"];
-              let star = rows[i]["star"];
-              let local = rows[i]["local"];
-              let star_image = "⭐".repeat(star);
-              let temp_html = `<div class="col">
-                                        <h3 class="card-title">${hotelName}</h3>
-                                        <p>${star_image}</p>
-                                        <p class="review-comment">${comment}</p></div>
-                                        </div>`;
-              $("#post-box").append(temp_html);
-            }
-          },
-        });
+  <style>
+       * {
+        font-family: "Gowun Batang", serif;
       }
-    </script>
-  </head>
-  <body class="fullbody">
-    <!-- header 영역 -->
-    <header>
-      <h1>Hotel'S parta Review Page</h1>
-      <p>
-        방문해 주신 모두가 남겨준
-        <strong style="color: black">소중한 리뷰</strong> 입니다
-      </p>
-    </header>
+    li a:hover {
+        color:red; }
 
-    <nav>
+    body {
+            width: auto;
+            height: auto;
+            margin: 0;
+
+            background-image: linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)
+            ),
+            url("https://digital.ihg.com/is/image/ihg/ic-alliance-resorts-las-vegas-5437642392-2x1?fit=fit,1&wid=2880&hei=1440&qlt=85,0&resMode=sharp2&op_usm=1.75,0.9,2,0");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
+
+    /* header 영역 */
+    header {
+      height: 200px;
+      background-color: transparent;
+      display: flex;
+      flex-direction: column;
+      /*수직 배치*/
+      align-items: center;
+      justify-content: center;
+      color: white;
+      border-radius: 10px;
+      margin: 15px 10px 10px 15px;
+    }
+
+    /* navigation bar */
+    nav {
+      display: flex;
+      background-color:rgba(0, 0, 0, 0.600); ;
+      border-radius: 10px;
+      margin: 15px 10px 10px 15px;
+      flex-direction: row;
+    }
+    .nav>button {
+      margin:100px auto auto auto;
+      float: right;
+      display: inline-block;
+
+    }
+
+    nav a {
+      color: black;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    button {
+        background-color: black;
+        padding: 20px 20px;
+        cursor: pointer;
+        width: 120px;
+        height: 50px;
+        opacity: 0.9;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        border: 1px solid white;
+        font-weight: bold;
+        font-size: 15px;
+        color: white;
+        margin-left: 100px;
+      }
+
+    button:hover {
+        transition: 1s ease-out;
+        opacity : 0.3;
+      }
+
+    .open-close-btn > button {
+      margin: 15px auto auto auto;
+      display: flex;
+      flex-direction: row;
+    }
+
+
+    #container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    /* 왼쪽 사이드 */
+    aside {
+      max-width: 50%;
+      max-height: 100%;
+      flex-grow: 3;
+
+      padding: 20px;
+      overflow: auto;
+      border-radius: 10px;
+      margin: 1px 5px 5px 5px;
+    }
+
+    .comment {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    article {
+      max-width: 100%;
+      max-height: 650px;
+      flex: 7;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 5px 5px 5px 5px;
+    }
+
+    footer {
+      padding: 20px;
+      border-radius: 10px;
+      margin: 15px 10px 10px 15px;
+    }
+
+    /* 반응형 웹 */
+    @media all and (max-width: 600px) {
+
+      #container,
+      nav {
+        flex-direction: column;
+      }
+    }
+
+    .comment{
+      /* border: solid black 3px ; */
+      /* border-radius: 10px; */
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 50px;
+      height:auto;
+      width: fit-content;
+
+      background-color: rgba(0, 0, 0, 0.206);
+    }
+    .block1 {
+      width: 500px;
+      height: 300px;
+      border-radius: 10px;
+      margin: 15px 10px 10px 15px;
+    }
+
+    .block2 {
+      width: 500px;
+      height: 300px;
+      border-radius: 10px;
+      margin: 15px 10px 10px 15px;
+    }
+
+    .block3 {
+      background-color: antiquewhite;
+      width: 540px;
+      height: auto;
+      padding: 5px;
+      text-align: left;
+      border-radius: 10px;
+      margin: 15px 10px 10px 15px;
+    }
+
+    .hotel-name {
+      text-align: center;
+      color: rgb(255, 255, 255);
+    }
+
+    .write-post {
+      width: 500px;
+      max-width: 95%;
+      padding: 5px;
+      height: 300px;
+
+    }
+
+    .title {
+      height: 350px;
+      width: 100%;
+      color: white;
+      text-shadow: 4px 4px 0px #595858, 5px 5px 0px #000000;
+    }
+
+
+  </style>
+
+
+  <script>
+    $(document).ready(function () {
+      listing();
+    });
+
+    function listing() {
+      $('#cards-box').empty()
+      $.ajax({
+        type: 'GET',
+        url: '/hotel',
+        data: {},
+        success: function (response) {
+          let rows = (response['hotel'])
+          for (let i = 0; i < rows.length; i++) {
+            let comment = rows[i]['comment']
+            let star = rows[i]['star']
+            let name = rows[i]['name']
+            let url = rows[i]['url']
+
+            let star_image = '⭐'.repeat(star)
+
+            let temp_html = `<div class="col">
+                                                <div class="card h-100">
+                                                        <div class="card-body" style="display: flex;">
+                                                        <img src="${url}" style="width: 350px; height: 250px">
+
+                                                        <div class="name-star" style="width: 300px; margin-left: 30px; margin-right: 30px;">
+                                                            <h3 class="card-title" style="max-width: 200px; font-size: 30px; background-color: ">${name}
+                                                            </h3>
+
+                                                            <div class="image-star" style="max-width: 230px; font-size: 30px; background-color: ">
+                                                            <p>${star_image}</p>
+                                                            </div>
+
+                                                            </div>
+
+                                                            <div class="comment-review" style="width: auto; background-color: ">
+                                                            <p class="review-comment" style="overflow: auto; max-width: 700px; max-height: 250px; font-size: 20px; text-align: left;">${comment}</p>
+                                                            </div>
+
+                                                        </div>
+                                                </div>
+                                            </div>`
+            $('#cards-box').append(temp_html)
+          }
+        }
+      })
+    }
+
+    function posting() {
+      let name = $('#name').val()
+      let star = $('#star').val()
+      let url = $('#url').val()
+      let comment = $('#comment').val()
+
+      $.ajax({
+        type: 'POST',
+        url: '/hotel',
+        data: { name_give: name, star_give: star, url_give: url, comment_give: comment },
+        success: function (response) {
+          alert(response['msg'])
+          window.location.reload()
+        }
+      });
+    }
+
+    function open_box() {
+      $('#post-box').show()
+    }
+
+    function close_box() {
+      $('#post-box').hide()
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- header 영역 -->
+  <header class="title">
+    <h1>Hotel's Parta Review Page</h1>
+    <p>방문해 주신 고객님들께서 남겨주신 <strong style="color: yellow">소중한 리뷰</strong> 입니다. </p>
+  </header>
+
+  <nav>
       <a href="#">
-        <button
-          type="button"
-          onclick="location.href='https://hotels.naver.com/item?hotelFileName=hotel%3AFairfield_by_Marriott_Seoul&adultCnt=2&checkIn=2022-12-18&checkOut=2022-12-19'"
-        >
-          링크 바로 이동
-        </button>
-      </a>
-      <a href="#">
-        <button
-          type="button"
-          onclick="window.open('https://hotels.naver.com/item?hotelFileName=hotel%3AFairfield_by_Marriott_Seoul&adultCnt=2&checkIn=2022-12-18&checkOut=2022-12-19') "
-        >
-          링크 새창 열기
-        </button>
-      </a>
-      <a href="#">Link</a>
-      <a href="#">Link</a>
-    </nav>
+      <button type="button" style="border: solid white; float: right;"" onclick="location.href=''">
+        🏠홈으로
+      </button>
+     </a>
+     <a href="#">
+        <button type="button" style="border: solid white; float: right;"" onclick="window.open('') ">
+          ⭐로그인
+      </button>
+     </a>
+  </nav>
 
-    <div id="container">
-      <!-- 왼쪽 사이드 -->
+  <div id="container">
+    <!-- 왼쪽 사이드 -->
 
-      <aside>
-        <div class="block1">
-          <img
-            src="https://www.p-city.com/mobilePub/static/images/hotelParadise/img_main_visual.jpg"
-            style="width: 550px; height: 300px; border-radius: 10px"
-            class="card-img-top"
-          />
-        </div>
+    <aside style="background-color: transparent; margin-top: 20px">
+      <div class="block1">
+        <img src="https://www.p-city.com/mobilePub/static/images/hotelParadise/img_main_visual.jpg"
+          style="width: 550px; height: 300px; border-radius: 10px; margin-top: -20px" class="card-img-top">
+      </div>
 
-        <div class="block2">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1619422.0435222401!2d124.81355549999999!3d37.55662630000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c98c2dec44d9d%3A0x642cdf5795c122fc!2z7YyM652864uk7J207Iqk7YWU!5e0!3m2!1sko!2skr!4v1670783059786!5m2!1sko!2skr"
-            width="550"
-            height="300"
-            style="border-radius: 10px; border: 1px"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
+      <div class="block2">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1619422.0435222401!2d124.81355549999999!3d37.55662630000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c98c2dec44d9d%3A0x642cdf5795c122fc!2z7YyM652864uk7J207Iqk7YWU!5e0!3m2!1sko!2skr!4v1670783059786!5m2!1sko!2skr"
+          width="550" height="300" style="border-radius: 10px; border: 1px;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
 
-        <div class="block3">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">호텔 Check in / Check out</li>
-            <li class="list-group-item">호텔 정보 etc...</li>
-          </ul>
-        </div>
-      </aside>
-      <!-- 본문 영역 -->
+      <div class="block3">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"> Check in 14:00pm / Check out 12:00pm</li>
+          <li class="list-group-item"> TEL. 02-777-7777</li>
+          <li class="list-group-item">
+            <a href="#">
+              <button type="button" style="border: none; color: black; background-color: white;"
+                onclick="window.open('https://www.agoda.com/') ">예약 사이트로 이동
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-      <div class="comment">
-        <div class="hotel-name">
-          <h2>Hotel title</h2>
-          <h2>서울 파라다이스 호텔</h2>
-        </div>
-        <article class="review_area">
-          <div class="block4">
-            <div class="card h-100">
-              <div class="card-body" id="post-box">
-                <img
-                  src="https://m.paradise.co.kr/images/about/img-history6.jpg"
-                  class="img-thumbnail"
-                  alt="..."
-                />
-                <h3 class="card-title">${title}</h3>
-                <p>${star_image}</p>
-                <p class="review-comment">${comment}</p>
-              </div>
-            </div>
 
-            <div class="card h-100">
-              <div class="card-body" id="post-box">
-                <img
-                  src="https://newsimg.sedaily.com/2021/02/25/22IO4TI2LP_7.jpg"
-                  class="img-thumbnail"
-                  alt="..."
-                />
-                <h3 class="card-title">${title}</h3>
-                <p>${star_image}</p>
-                <p class="review-comment">${comment}</p>
-              </div>
-            </div>
+    </aside>
+    <!-- 본문 영역 -->
 
-            <div class="card h-100">
-              <div class="card-body" id="post-box">
-                <h3 class="card-title">${title}</h3>
-                <p>${star_image}</p>
-                <p class="review-comment">${comment}</p>
-              </div>
-            </div>
+    <div class="comment" style="width: 500px; margin-top:30px; background-color: rgba(0, 0, 0, 0.5)">
+      <div class="hotel-name" style="margin-top: 30px; font-weight: bold">
+        <h2>서울 파라다이스호텔</h2>
+      </div>
 
-            <div class="card h-100">
-              <div class="card-body" id="post-box">
-                <h3 class="card-title">${title}</h3>
-                <p>${star_image}</p>
-                <p class="review-comment">${comment}</p>
-              </div>
-            </div>
+      <button onclick="open_box()"
+        style= "width:max-content; margin:20px auto auto auto; font-size: 20px; border:none; background-color: #595858; ">👉 리뷰 작성하기 👈
+      </button>
 
-            <div class="card h-100">
-              <div class="card-body" id="post-box">
-                <h3 class="card-title">${title}</h3>
-                <p>${star_image}</p>
-                <p class="review-comment">${comment}</p>
-              </div>
-            </div>
+      <article>
+        <div class="write-post" id="post-box" style="background-color: transparent; margin: auto; display: none;">
 
-            <div class="card h-100">
-              <div class="card-body" id="post-box">
-                <h3 class="card-title">${title}</h3>
-                <p>${star_image}</p>
-                <p class="review-comment">${comment}</p>
-              </div>
-            </div>
-
-            <div class="card h-100">
-              <div class="card-body" id="post-box">
-                <h3 class="card-title">${title}</h3>
-                <p>${star_image}</p>
-                <p class="review-comment">${comment}</p>
-              </div>
-            </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">이름</span>
+            <input type="text" class="form-control" placeholder="사용하실 이름을 적어주세요" aria-label="Username"
+              aria-describedby="basic-addon1" id="name">
           </div>
-        </article>
-        <button type="button" class="write-btn">리뷰 쓰기</button>
+
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">별점</label>
+            <select class="form-select" id="star">
+              <option selected>-- 선택하기 --</option>
+              <option value="1">⭐</option>
+              <option value="2">⭐⭐</option>
+              <option value="3">⭐⭐⭐</option>
+              <option value="4">⭐⭐⭐⭐</option>
+              <option value="5">⭐⭐⭐⭐⭐</option>
+              <option value="6">⭐⭐⭐⭐⭐⭐</option>
+              <option value="7">⭐⭐⭐⭐⭐⭐⭐</option>
+              <option value="8">⭐⭐⭐⭐⭐⭐⭐⭐</option>
+              <option value="9">⭐⭐⭐⭐⭐⭐⭐⭐⭐</option>
+              <option value="10">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</option>
+            </select>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input  id="url" type="email" class="form-control" placeholder="name@example.com">
+            <label style="color:gray"> 호텔 이미지 URL 복사/붙여넣기 </label>
+          </div>
+
+          <div class="form-floating">
+            <textarea id="comment" class="form-control" placeholder="Leave a comment here"
+              style="height: 300px"></textarea>
+            <label style="color:gray" for="floatingTextarea2"> 이곳에 리뷰를 남겨주세요</label>
+          </div>
+
+          <div class="open-close-btn" style="margin-top: 10px; display:flex; flex-direction: row;">
+            <button onclick="posting()" type="button" class="btn btn-light">기록하기</button>
+            <button onclick="close_box()" type="button" class="btn btn-outline-light">닫기</button>
+          </div>
+
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    <div class="mycards">
+      <div class="row row-cols-1 row-cols-md-1 g-2" id="cards-box">
       </div>
     </div>
+  </footer>
 
-    <footer>
-      <h2>쓸때가 있을까? 없으면 삭제 해도 무방</h2>
-    </footer>
-  </body>
+</body>
+
 </html>
