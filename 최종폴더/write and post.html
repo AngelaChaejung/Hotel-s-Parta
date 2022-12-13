@@ -94,7 +94,12 @@
      button:hover {
         border: 2px solid white;
       }
-
+    
+    .open-close-btn > button {
+      margin: 15px auto auto auto;
+      display: flex;
+      flex-direction: row;
+    }
 
 
     #container {
@@ -143,6 +148,16 @@
       }
     }
 
+    .comment{
+      /* border: solid black 3px ; */
+      /* border-radius: 10px; */
+      background-color: rgba(0, 0, 0, 0.5); 
+      padding: 50px;
+      height:auto;
+      width: fit-content;
+
+      background-color: rgba(0, 0, 0, 0.206);
+    }
     .block1 {
       width: 500px;
       height: 300px;
@@ -168,9 +183,8 @@
     }
 
     .hotel-name {
-
       text-align: center;
-      color: cornflowerblue;
+      color: rgb(255, 255, 255);
     }
 
     .write-post {
@@ -187,6 +201,9 @@
       color: white;
       text-shadow: 4px 4px 0px #595858, 8px 8px 0px #000000;
     }
+   
+
+
   </style>
 
 
@@ -271,7 +288,7 @@
   <!-- header 영역 -->
   <header class="title">
     <h1>Hotel's Parta Review Page</h1>
-    <p>방문해 주신 모두가 남겨준 <strong style="color: yellow">소중한 리뷰</strong> 입니다</p>
+    <p>방문해 주신 고객님들께서 남겨주신 <strong style="color: yellow">소중한 리뷰</strong> 입니다</p>
   </header>
 
   <nav>
@@ -331,17 +348,17 @@
     </aside>
     <!-- 본문 영역 -->
 
-    <div class="comment" style="width: 500px; background-color: white">
-      <div class="hotel-name" style="margin-top: 10px">
+    <div class="comment" style="width: 500px; margin-top:30px; background-color: rgba(0, 0, 0, 0.5)">
+      <div class="hotel-name" style="margin-top: 30px; font-weight: bold">
         <h2>서울 파라다이스텔</h2>
       </div>
 
       <button onclick="open_box()"
-        style="display: block; color: black; padding-bottom: 15px;  border:solid black; border-radius: 20px; width: 300px; height: 50px; background-color: white; margin-top: 10px; margin-bottom: 10px; font-size: 20px;">👉리뷰 작성하기👈
+        style= "width:max-content; margin:20px auto auto auto; font-size: 20px; border:none; background-color: #595858; ">👉 리뷰 작성하기 👈
       </button>
 
       <article>
-        <div class="write-post" id="post-box" style="background-color: transparent; margin-top: -30px; display: none;">
+        <div class="write-post" id="post-box" style="background-color: transparent; margin: auto; display: none;">
 
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">이름</span>
@@ -373,11 +390,11 @@
 
           <div class="form-floating">
             <textarea id="comment" class="form-control" placeholder="Leave a comment here"
-              style="height: 420px"></textarea>
+              style="height: 300px"></textarea>
             <label for="floatingTextarea2">이곳에 리뷰를 남겨주세요</label>
           </div>
 
-          <div class="open-close-btn" style="margin-top: 5px;">
+          <div class="open-close-btn" style="margin-top: 10px;">
             <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
             <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
           </div>
