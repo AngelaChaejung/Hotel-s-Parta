@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <title>Hotel’s Parta</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic:wght@400;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- 글꼴설정 -->
+
+  <style>
+    * {
+      font-family: "Gowun Batang", serif;
+    }
+
+    /* 메뉴버튼글씨 */
+    ul {
+      list-style-type: none;
+
+      padding-top: 7px;
+      float: right;
+      position: relative;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 메뉴버튼 */
+    ul > button {
+      width: 150px;
+      height: 40px;
+      background-color: black;
+      border-radius: 50px;
+      border: 2px solid white;
+      color: white;
+      margin: auto;
+      margin-right: 20px;
+    }
+
+    /* 메뉴버튼위치        ???? */
+    ul li {
+      display: inline;
+
+      border-left: 1px solid #c0c0c0;
+      padding: 0px 15px 0px 10px;
+      margin: 5px 0px 5px 0px;
+    }
+
+    ul li:first-child {
+      border-left: none;
+    }
+
+    /* 전체배경이미지 */
+    .fullbody {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://digital.ihg.com/is/image/ihg/ic-alliance-resorts-las-vegas-5437642392-2x1?fit=fit,1&wid=2880&hei=1440&qlt=85,0&resMode=sharp2&op_usm=1.75,0.9,2,0")
+          no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    /* 타이틀상단 */
+    .mytitle {
+      width: 100%;
+      height: 250px;
+
+      color: white;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 4px 4px 0px #595858, 8px 8px 0px #000000;
+    }
+
+    /* 메뉴창1 */
+    .mymenu {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      padding-top: 32px;
+      top: -32px;
+    }
+
+    /* 영화기록하기버튼1_수정요망 */
+    .mytitle > button {
+      width: 200px;
+      height: 50px;
+
+      background-color: transparent;
+      color: white;
+
+      border-radius: 50px;
+
+      border: 1px solid white;
+
+      margin-top: 10px;
+    }
+
+    /* 영화기록하기버튼2_수정요망 */
+    .mytitle > button:hover {
+      border: 2px solid white;
+    }
+
+    /* 리뷰카드창 전체div */
+    .reviews {
+      max-width: 1200px;
+      width: 100%;
+      margin: 20px auto 0px auto;
+    }
+
+    /* 개개의 리뷰카드div */
+    .review {
+      background-color: white;
+    }
+
+    /* 로그인버튼 div */
+    .login_out_btn {
+      height: 80px;
+      float: right;
+      display: flex;
+      flex-direction: column;
+      margin: 0px 30px 0px 0px;
+      position: sticky;
+      padding-top: 32px;
+      top: -32px;
+    }
+
+    /* 로그인버튼 효과 */
+    .login_out_btn > button {
+      width: 100px;
+      height: 35px;
+      background-color: black;
+      border-radius: 50px;
+      border: 2px solid white;
+      color: white;
+      margin: auto;
+      margin-right: 20px;
+      justify-content: end;
+      align-items: flex-end;
+    }
+
+    /* 메뉴창2 전체div */
+    .local {
+      width: 500px;
+      height: 50px;
+      margin: auto;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      position: sticky;
+      padding-top: 32px;
+      top: -32px;
+    }
+
+    /* 영화기록하기창div 수정요망 */
+    .mypost {
+      max-width: 500px;
+      width: 95%;
+
+      margin: 20px auto 0px auto;
+
+      box-shadow: 0px 0px 3px 0px gray;
+      padding: 20px;
+
+      display: none;
+    }
+
+    /* 영화 기록하기 닫기 버튼1 수정요망 */
+    .mybtns {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    /* 영화 기록하기 닫기 버튼2 수정요망 */
+    .mybtns > button {
+      margin-right: 10px;
+    }
+
+    .logoutbtn {
+      margin: auto;
+    }
+
+    h1 { 
+      font-size: 5rem; 
+    }
+  </style>
+
+  <script>
+    $(document).ready(function () {
+      listing();
+    });
+    // 경로설정필요 , db에서 받아온정보를 포스팅박스에 붙여주는거
+    function listing() {
+      $.ajax({
+        type: "GET",
+        url: "/index/post",
+        data: {},
+        success: function (response) {
+          let rows = response["hotelsList"];
+          for (let i = 0; i < rows.length; i++) {
+            let imageUrl = rows[i]["url"];
+            let hotelName = rows[i]["hotelName"];
+            let desc = rows[i]["desc"];
+            let star = rows[i]["star"];
+            let local = rows[i]["local"];
+
+            let star_image = "⭐".repeat(star);
+
+            let temp_html = `<div onclick="window.open('/reviewpost');">
+                                      <div class="col"></div>
+                                          <div class="col">
+                                          <div class="review">
+                                              <img src="${imageUrl}" class="card-img-top">
+                                                <div class="card-body">
+                                                  <h4 class="card-title">${hotelName}</h4>
+                                                  <p>${local}</p>
+                                                  <p>${star_image}</p>
+                                                  <p class="desc">${desc}</p>
+                                                </div>
+                                              </div>
+                                          </div>
+                                      </div>`;
+            $("#cards-box").append(temp_html);
+          }
+        },
+      });
+    }
+    
+    // 영화기록하기 에서 값을 입력받아 DB에 저장
+    function posting() {
+      let hotelName = $("#hotelName").val();
+      let imageUrl = $("#imageUrl").val();
+      let local = $("#local").val();
+      let star = $("#star").val();
+      let desc = $("#desc").val();
+      console.log(hotelName, imageUrl, local, star, desc);
+
+      $.ajax({
+        type: "POST",
+        url: "index/post",
+        data: {
+          imageUrl_give: imageUrl,
+          star_give: star,
+          desc_give: desc,
+          hotelName_give: hotelName,
+          local_give: local,
+        },
+        success: function (response) {
+          alert(response["msg"]);
+          window.location.reload();
+        },
+      });
+    }
+    // 영화기록하기창 열고 숨기기
+    function open_box() {
+      $("#post-box").show();
+    }
+
+    function close_box() {
+      $("#post-box").hide();
+    }
+
+  </script>
+
+  <body class="fullbody">
+    <!-- 타이틀상단과 메뉴 -->
+    <div class="BG_image">
+      <div class="mytitle">
+        <h1>Hotel’s Parta</h1>
+        <h3>지역별 호텔 리뷰 사이트!</h3>
+      </div>
+      <div class="login_out_btn">
+        <button onclick="open_box()">POST</button>
+        <button type="button" class="logoutbtn" onclick="location.href='/' ">LOG OUT</button>
+      </div>
+      <div class="mymenu">
+        <div class="local">
+          <ul>
+            
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f303.png"
+                width="32"
+                height="32"
+              />
+            
+              서 울
+            </button>
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f309.png"
+                width="32"
+                height="32"
+              />
+              부 산
+            </button>
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f3dd.png"
+                width="32"
+                height="32"
+              />
+              제 주
+            </button>
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f682.png"
+                width="32"
+                height="32"
+              />
+              충 청
+            </button>
+            <button>
+              <img
+                src="https://pic.sopili.net/pub/emoji/noto-emoji/png/128/emoji_u1f3c4_200d_2642.png"
+                width="32"
+                height="32"
+              />
+              강 원
+            </button>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reviews">
+        <div class="mypost" id="post-box">
+          <div class="form-floating mb-3">
+            <input
+              id="hotelName"
+              type="text"
+              class="form-control"
+              placeholder="hotelname"
+            />
+            <label>호텔 이름</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              id="imageUrl"
+              type="url"
+              class="form-control"
+              placeholder="url"
+            />
+            <label>호텔 URL</label>
+          </div>
+          <div class="input-group mb-3">
+            <select class="form-select" id="local">
+              <option selected>지역을선택하세요</option>
+              <option value="서울">🏙 서 울</option>
+              <option value="부산">🏖 부 산</option>
+              <option value="제주">🏝 제 주</option>
+              <option value="충청">🛣 충 청</option>
+              <option value="강원">🏂 강 원</option>
+            </select>
+            <label class="input-group-text" for="inputGroupSelect02"
+              >지역선택</label
+            >
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01"
+              >별점</label
+            >
+            <select class="form-select" id="star">
+              <option selected>-- 선택하기 --</option>
+              <option value="1">⭐</option>
+              <option value="2">⭐⭐</option>
+              <option value="3">⭐⭐⭐</option>
+              <option value="4">⭐⭐⭐⭐</option>
+              <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+          </div>
+          <div class="form-floating">
+            <textarea
+              id="desc"
+              class="form-control"
+              placeholder="desc"
+            ></textarea>
+            <label for="floatingTextarea2">호텔정보</label>
+          </div>
+          <div class="mybtns">
+            <button onclick="posting()" type="button" class="btn btn-dark">
+              호텔 기록하기
+            </button>
+            <button onclick="close_box()" type="button" class="btn btn-dark">
+              포스트 닫기
+            </button>
+          </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box"></div>
+      </div>
+    </div>
+  </body>
+</html>
